@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - ShopieWorld</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>ShopieWorld</h2>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">All Products</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">Categories</a>
+                    <ul class="dropdown-menu" id="categoryDropdown">
+                        <!-- Categories will be loaded here -->
+                    </ul>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="login.html" class="login-btn">🔒 Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="product-details-page">
+        <div class="container">
+            <div class="breadcrumb">
+                <a href="index.html">Home</a> > 
+                <a href="products.html">Products</a> > 
+                <span id="productBreadcrumb">Product</span>
+            </div>
+
+            <div class="product-details-container" id="productDetailsContainer">
+                <!-- Product details will be loaded here -->
+            </div>
+
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Loading product details...</p>
+            </div>
+
+            <!-- Error State -->
+            <div class="error-state" id="errorState" style="display: none;">
+                <div class="error-icon">❌</div>
+                <h3>Product Not Found</h3>
+                <p>The product you're looking for doesn't exist or has been removed.</p>
+                <a href="products.html" class="btn btn-primary">Browse All Products</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Image Zoom Modal -->
+    <div id="imageZoomModal" class="modal">
+        <div class="modal-content image-zoom-content">
+            <span class="close" id="closeZoom">&times;</span>
+            <img id="zoomedImage" src="/placeholder.svg" alt="Product Image">
+        </div>
+    </div>
+
+    <script src="product-details.js"></script>
+</body>
+</html>

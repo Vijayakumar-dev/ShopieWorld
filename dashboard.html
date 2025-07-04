@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - ShopieWorld</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="admin-layout">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="sidebar-header">
+                <h2>ShopieWorld</h2>
+                <p>Admin Panel</p>
+            </div>
+            <nav class="sidebar-nav">
+                <ul>
+                    <li><a href="#dashboard" class="nav-link active" data-section="dashboard">📊 Dashboard</a></li>
+                    <li><a href="#banners" class="nav-link" data-section="banners">🖼️ Banner Management</a></li>
+                    <li><a href="#categories" class="nav-link" data-section="categories">📂 Category Management</a></li>
+                    <li><a href="#products" class="nav-link" data-section="products">📦 Product Management</a></li>
+                    <li><a href="#settings" class="nav-link" data-section="settings">⚙️ Settings</a></li>
+                </ul>
+            </nav>
+            <div class="sidebar-footer">
+                <button onclick="logout()" class="logout-btn">🚪 Logout</button>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main">
+            <header class="admin-header">
+                <div class="header-content">
+                    <h1 id="sectionTitle">Dashboard</h1>
+                    <div class="header-actions">
+                        <span class="welcome-text">Welcome, Admin</span>
+                        <a href="index.html" target="_blank" class="view-site-btn">🌐 View Site</a>
+                    </div>
+                </div>
+            </header>
+
+            <div class="admin-content">
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">📦</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="totalProducts">0</div>
+                                <div class="stat-label">Total Products</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">✅</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="availableProducts">0</div>
+                                <div class="stat-label">Available</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">💰</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="soldProducts">0</div>
+                                <div class="stat-label">Sold</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">⏳</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="reservedProducts">0</div>
+                                <div class="stat-label">Reserved</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📂</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="totalCategories">0</div>
+                                <div class="stat-label">Categories</div>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🖼️</div>
+                            <div class="stat-info">
+                                <div class="stat-number" id="totalBanners">0</div>
+                                <div class="stat-label">Banners</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="dashboard-charts">
+                        <div class="chart-card">
+                            <h3>Recent Activity</h3>
+                            <div class="activity-list" id="recentActivity">
+                                <!-- Recent activities will be loaded here -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Banner Management Section -->
+                <section id="banners-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Banner Management</h2>
+                        <button class="btn btn-primary" onclick="showAddBannerForm()">+ Add Banner</button>
+                    </div>
+                    
+                    <div class="banner-form-container" id="bannerFormContainer" style="display: none;">
+                        <div class="form-card">
+                            <h3>Add New Banner</h3>
+                            <form id="addBannerForm">
+                                <div class="form-group">
+                                    <label>Banner Title:</label>
+                                    <input type="text" id="bannerTitle" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Offer Details:</label>
+                                    <textarea id="bannerOffer" rows="3" required></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Banner Image:</label>
+                                    <div class="image-upload-container" onclick="document.getElementById('bannerImageInput').click()">
+                                        <input type="file" id="bannerImageInput" class="file-input" accept="image/*">
+                                        <img id="bannerImagePreview" class="image-preview" style="display: none;">
+                                        <div class="upload-text" id="bannerUploadText">
+                                            📷 Click to upload banner image<br>
+                                            <small>Recommended: 800x400px</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Add Banner</button>
+                                    <button type="button" class="btn btn-secondary" onclick="hideBannerForm()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="banner-list" id="bannerList">
+                        <!-- Banners will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Category Management Section -->
+                <section id="categories-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Category Management</h2>
+                        <button class="btn btn-primary" onclick="showAddCategoryForm()">+ Add Category</button>
+                    </div>
+                    
+                    <div class="category-form-container" id="categoryFormContainer" style="display: none;">
+                        <div class="form-card">
+                            <h3 id="categoryFormTitle">Add New Category</h3>
+                            <form id="addCategoryForm">
+                                <input type="hidden" id="editCategoryId">
+                                <div class="form-group">
+                                    <label>Category Name:</label>
+                                    <input type="text" id="categoryName" required>
+                                </div>
+                                <div class="form-group">
+                                    <label>Category Description:</label>
+                                    <textarea id="categoryDescription" rows="3"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Category Image:</label>
+                                    <div class="image-upload-container" onclick="document.getElementById('categoryImageInput').click()">
+                                        <input type="file" id="categoryImageInput" class="file-input" accept="image/*">
+                                        <img id="categoryImagePreview" class="image-preview" style="display: none;">
+                                        <div class="upload-text" id="categoryUploadText">
+                                            📷 Click to upload category image<br>
+                                            <small>Recommended: 400x300px</small>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary" id="categorySubmitBtn">Add Category</button>
+                                    <button type="button" class="btn btn-secondary" onclick="hideCategoryForm()">Cancel</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="categories-list" id="categoriesList">
+                        <!-- Categories will be loaded here -->
+                    </div>
+                </section>
+
+                <!-- Product Management Section -->
+                <section id="products-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Product Management</h2>
+                        <div class="header-actions">
+                            <button class="btn btn-secondary" onclick="refreshProductCategories()">🔄 Refresh Categories</button>
+                        </div>
+                    </div>
+                    
+                    <!-- Category Selection View -->
+                    <div class="category-selection-view" id="categorySelectionView">
+                        <div class="category-selection-header">
+                            <h3>Select a Category to Manage Products</h3>
+                            <p>Choose a category below to view, add, edit, or delete products in that category.</p>
+                        </div>
+                        
+                        <div class="categories-grid-management" id="categoriesGridManagement">
+                            <!-- Categories will be loaded here -->
+                        </div>
+                        
+                        <div class="no-categories-message" id="noCategoriesMessage" style="display: none;">
+                            <div class="empty-state">
+                                <div class="empty-icon">📂</div>
+                                <h3>No Categories Found</h3>
+                                <p>You need to create categories first before managing products.</p>
+                                <button class="btn btn-primary" onclick="showSection('categories')">Create Categories</button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Product Management View -->
+                    <div class="product-management-view" id="productManagementView" style="display: none;">
+                        <div class="product-management-header">
+                            <div class="breadcrumb-nav">
+                                <button class="btn btn-secondary" onclick="backToCategorySelection()">← Back to Categories</button>
+                                <span class="breadcrumb-separator">></span>
+                                <span class="current-category" id="currentCategoryName">Category Name</span>
+                            </div>
+                            <div class="category-actions">
+                                <button class="btn btn-primary" onclick="showAddProductForm()">+ Add Product</button>
+                            </div>
+                        </div>
+                        
+                        <div class="category-info-card" id="categoryInfoCard">
+                            <!-- Category info will be loaded here -->
+                        </div>
+                        
+                        <!-- Add Product Form -->
+                        <div class="product-form-container" id="productFormContainer" style="display: none;">
+                            <div class="form-card">
+                                <h3 id="productFormTitle">Add New Product</h3>
+                                <form id="addProductForm">
+                                    <input type="hidden" id="editProductId">
+                                    <input type="hidden" id="selectedCategoryId">
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Product Code:</label>
+                                            <input type="text" id="productCode" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Product Name:</label>
+                                            <input type="text" id="productName" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Price:</label>
+                                            <input type="number" id="productPrice" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>Color:</label>
+                                            <input type="text" id="productColor" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Status:</label>
+                                        <select id="productStatus">
+                                            <option value="available">Available</option>
+                                            <option value="reserved">Reserved</option>
+                                            <option value="sold">Sold</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Product Image:</label>
+                                        <div class="image-upload-container" onclick="document.getElementById('productImageInput').click()">
+                                            <input type="file" id="productImageInput" class="file-input" accept="image/*">
+                                            <img id="productImagePreview" class="image-preview" style="display: none;">
+                                            <div class="upload-text" id="productUploadText">
+                                                📷 Click to upload product image<br>
+                                                <small>Recommended: 400x400px</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-row">
+                                        <div class="form-group">
+                                            <label>Contact Number:</label>
+                                            <input type="tel" id="contactNumber" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>WhatsApp Number:</label>
+                                            <input type="tel" id="whatsappNumber" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>GPay/UPI Link:</label>
+                                        <input type="text" id="gpayLink">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Offer Details:</label>
+                                        <textarea id="offerDetails" rows="3"></textarea>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button type="submit" class="btn btn-primary" id="productSubmitBtn">Add Product</button>
+                                        <button type="button" class="btn btn-secondary" onclick="hideProductForm()">Cancel</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        
+                        <!-- Products List -->
+                        <div class="category-products-list" id="categoryProductsList">
+                            <!-- Products will be loaded here -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Settings Section -->
+                <section id="settings-section" class="content-section">
+                    <div class="section-header">
+                        <h2>Settings</h2>
+                    </div>
+                    
+                    <div class="settings-grid">
+                        <div class="setting-card">
+                            <h3>Uncategorized Products</h3>
+                            <p>Show products without categories on the website</p>
+                            <label class="toggle-switch">
+                                <input type="checkbox" id="showUncategorized">
+                                <span class="toggle-slider"></span>
+                            </label>
+                        </div>
+                        <div class="setting-card">
+                            <h3>Site Information</h3>
+                            <div class="form-group">
+                                <label>Site Name:</label>
+                                <input type="text" id="siteName" value="ShopieWorld">
+                            </div>
+                            <div class="form-group">
+                                <label>Contact Number:</label>
+                                <input type="tel" id="siteContact" value="+91 98765 43210">
+                            </div>
+                            <div class="form-group">
+                                <label>Admin WhatsApp (for notifications):</label>
+                                <input type="tel" id="adminWhatsApp" value="+91 98765 43210">
+                            </div>
+                            <button class="btn btn-primary" onclick="saveSettings()">Save Settings</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+
+    <script src="dashboard.js"></script>
+</body>
+</html>

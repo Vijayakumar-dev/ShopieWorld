@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category - ShopieWorld</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>ShopieWorld</h2>
+            </div>
+            <div class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">All Products</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="dropdown-toggle">Categories</a>
+                    <ul class="dropdown-menu" id="categoryDropdown">
+                        <!-- Categories will be loaded here -->
+                    </ul>
+                </li>
+                <li><a href="#about">About</a></li>
+                <li><a href="login.html" class="login-btn">🔒 Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="category-page">
+        <div class="category-header">
+            <div class="container">
+                <div class="breadcrumb">
+                    <a href="index.html">Home</a> > 
+                    <a href="products.html">Products</a> > 
+                    <span id="categoryBreadcrumb">Category</span>
+                </div>
+                <div class="category-hero">
+                    <div class="category-hero-content">
+                        <h1 id="categoryTitle">Category Products</h1>
+                        <p id="categoryDescription">Browse products in this category</p>
+                        <div class="category-stats">
+                            <span id="categoryProductCount">0 products</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>🔍 Search products</label>
+                        <input type="text" id="searchInput" placeholder="Search by name or product code...">
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort by</label>
+                        <select id="sortFilter">
+                            <option value="latest">Latest</option>
+                            <option value="price-low">Price: Low → High</option>
+                            <option value="price-high">Price: High → Low</option>
+                            <option value="name">Name A-Z</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Status</label>
+                        <select id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="available">Available</option>
+                            <option value="reserved">Reserved</option>
+                            <option value="sold">Sold</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Price Range</label>
+                        <select id="priceFilter">
+                            <option value="all">All Prices</option>
+                            <option value="0-1000">Under ₹1,000</option>
+                            <option value="1000-5000">₹1,000 - ₹5,000</option>
+                            <option value="5000-10000">₹5,000 - ₹10,000</option>
+                            <option value="10000+">Above ₹10,000</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button id="resetFilters" class="filter-reset-btn">Clear All Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="products-grid" id="productsGrid">
+                <!-- Products will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="category.js"></script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - ShopieWorld</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>ShopieWorld</h2>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="login.html" class="login-btn">🔒 Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="products-page">
+        <div class="products-header">
+            <div class="container">
+                <h1 style="text-align: center; margin-bottom: 30px;">All Products</h1>
+                
+                <!-- Category Quick Links -->
+                <div class="category-quick-links" id="categoryQuickLinks">
+                    <!-- Category links will be loaded here -->
+                </div>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label>🔍 Search products</label>
+                        <input type="text" id="searchInput" placeholder="Search by name or product code...">
+                    </div>
+                    <div class="filter-group">
+                        <label>Sort by</label>
+                        <select id="sortFilter">
+                            <option value="latest">Latest</option>
+                            <option value="price-low">Price: Low → High</option>
+                            <option value="price-high">Price: High → Low</option>
+                            <option value="name">Name A-Z</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Status</label>
+                        <select id="statusFilter">
+                            <option value="all">All Status</option>
+                            <option value="available">Available</option>
+                            <option value="reserved">Reserved</option>
+                            <option value="sold">Sold</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label>Category</label>
+                        <select id="categoryFilter">
+                            <option value="all">All Categories</option>
+                            <!-- Categories will be loaded here -->
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <button id="resetFilters" class="filter-reset-btn">Clear All Filters</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <!-- Products organized by category -->
+            <div class="products-by-category" id="productsByCategory">
+                <!-- Products will be loaded here organized by category -->
+            </div>
+            
+            <!-- All products grid (when filtering) -->
+            <div class="products-grid" id="productsGrid" style="display: none;">
+                <!-- Filtered products will be loaded here -->
+            </div>
+        </div>
+    </div>
+
+    <script src="products.js"></script>
+</body>
+</html>
